@@ -2,7 +2,7 @@
 
 # PYTHON IMPORTS
 import os
-from tempfile import NamedTemporaryFile
+from tempfile import TemporaryFile
 
 # DJANGO IMPORTS
 from django.utils.translation import ugettext_lazy as _
@@ -34,7 +34,7 @@ def transpose_image(request, fileobjects, operation):
         f = fileobject.site.storage.open(fileobject.path)
         im = Image.open(f)
         new_image = im.transpose(operation)
-        tmpfile = File(NamedTemporaryFile())
+        tmpfile = File(TemporaryFile())
 
         try:
             new_image.save(tmpfile, format=Image.EXTENSION[ext], quality=VERSION_QUALITY, optimize=(os.path.splitext(fileobject.path)[1].lower() != '.gif'))

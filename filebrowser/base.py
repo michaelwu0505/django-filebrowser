@@ -6,7 +6,7 @@ import datetime
 import time
 import platform
 import mimetypes
-from tempfile import NamedTemporaryFile
+from tempfile import TemporaryFile
 import warnings
 
 # DJANGO IMPORTS
@@ -514,7 +514,7 @@ class FileObject():
         value has to be a path relative to the storage location.
         """
 
-        tmpfile = File(NamedTemporaryFile())
+        tmpfile = File(TemporaryFile())
 
         try:
             f = self.site.storage.open(self.path)
